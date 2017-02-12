@@ -1,7 +1,7 @@
 from django.http import HttpResponse,Http404
 from .models import Post
 from .forms import PostForm
-from django.shortcuts import render,get_object_or_404,redirect
+from django.shortcuts import render,get_object_or_404,redirect,render_to_response
 from django.contrib import messages
 #pagination
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -19,7 +19,7 @@ from django.contrib.contenttypes.models import ContentType
 
 # Create your views here.
 
-
+from django.template.context import RequestContext
 
 
 def post_create(request):
@@ -124,6 +124,8 @@ def post_list(request):
 	"today":today,
 
 	}
+	if request.is_ajax():
+		return render(request,"results.html",context)
 	return render(request,"post_list.html",context)
 
 

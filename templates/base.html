@@ -55,6 +55,7 @@
 </div>
 <!-- Latest compiled and minified JavaScript -->
 <!-- jquery-->
+
 <script
   src="http://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
@@ -65,7 +66,25 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		
 
+		$("#q").keyup(function(event){
+			event.preventDefault();
+			
+			q = $("#q").val();
+			$.ajax({
+
+				type:"GET",
+				url:"{% url 'posts:home' %}?q="+q,
+				data:{
+					csrfmiddlewaretoken:'{{ csrf_token }}',
+				},
+				success: function(data){
+					$("#results").html(data);
+				}
+			})
+		});
+	
 		$(".content-markdown").each(function(){
 
 			var content= $(this).text()
@@ -119,6 +138,7 @@
 
 
 </script>
+
 </body>
 </html>
 

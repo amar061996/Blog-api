@@ -1,25 +1,4 @@
-{% extends "base.html" %}
-
-{% block content %}
-
-		
-		<div class="col-sm-6 col-sm-offset-3">
-		<h1>{{ title }} </h1>
-		<form method="GET" action="" class="row">
-			<div class="col-sm-6">
-				<div class="input-group">
-					<input class="form-control" type="text" name="q" placeholder="Seach Posts" value="{{ request.GET.q }}" id="q"/>
-					<span class="input-group-btn">	
-						<!-- <input class="btn btn-default" type="submit" name="" value="Search" /> -->
-						<button class="btn btn-default" id="Search">Search <i class="fa fa-search" aria-hidden="true"></i></button>
-					</span>
-				</div>
-			</div>	
-		</form>
-		<br/>
-		<span id=”spinner” style="display: none;position: relative;"><img src='http://upload.wikimedia.org/wikipedia/commons/d/de/Ajax-loader.gif'/></span>
-		<div id="results">
-		<div class="row">
+<div class="row">
 
 		{% for obj in queryset %}
 		
@@ -50,10 +29,3 @@
 
 
 		</div>
-		</div>
-		</div>
-		
-
-
-{% endblock %}
-
